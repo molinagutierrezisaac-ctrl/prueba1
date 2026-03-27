@@ -5,126 +5,88 @@
 <title>Invitación Isaac y Sofía</title>
 
 <style>
-  body {
-    margin: 0;
-    font-family: 'Georgia', serif;
-  }
+ body {
+  margin: 0;
+  font-family: 'Georgia', serif;
+  background: #f5f0eb;
+}
 
-  /* Fondo fijo */
-  .fondo {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-image: url("invitacion.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    z-index: -1;
-  }
-
-  /* Contenedor */
+  /* Contenedor principal */
   .container {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-  }
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
 
-  /* Contador */
+  /* Imagen de invitación */
+.container img {
+  width: 100vw;
+  height: 100vh;
+  object-fit: contain; /* o cover si quieres que llene todo */
+  display: block;
+}
+
+  /* Contador sobre la imagen */
   #countdown {
     position: absolute;
-    top: 45%;
+    top: 50%;   /* altura proporcional */
     left: 50%;
     transform: translateX(-50%);
     color: #a67c52;
-    font-size: 2.5vw;
+    font-size: 2vw;  /* relativo al ancho de la pantalla */
     letter-spacing: 0.1em;
     text-align: center;
   }
 
-  /* Botones invisibles */
+  /* Botones invisibles sobre la imagen */
   .btn-invisible {
     position: absolute;
     cursor: pointer;
+    background: rgba(0,0,0,0); /* invisible */
   }
-
-  /* Botón música */
-  .btn-musica {
-    top: 23%;
-    left: 50%;
-    width: 7%;
-    height: 3%;
-    transform: translateX(-50%);
-  }
-
-  /* Botón ubicación */
-  .btn-ubicacion {
-    top: 80%;
-    left: 58%;
-    width: 12%;
-    height: 2.5%;
-    transform: translateX(-50%);
-  }
-
-  /* Responsive */
-  @media (max-width: 600px) {
-    #countdown {
-      font-size: 5vw;
-    }
-
-    .btn-musica {
-      width: 10%;
-      height: 4%;
-      top: 25%;
-    }
-
-    .btn-ubicacion {
-      width: 15%;
-      height: 3.5%;
-      top: 82%;
-    }
-  }
-
 </style>
 </head>
 <body>
 
-<!-- Fondo -->
-<div class="fondo"></div>
-
 <div class="container">
+
+  <!-- Imagen de invitación -->
+  <img src="invitacion.png" alt="Invitación Isaac y Sofía">
 
   <!-- Contador -->
   <div id="countdown"></div>
 
-  <!-- Botón música -->
-  <div class="btn-invisible btn-musica" onclick="toggleAudio()"></div>
-
-  <!-- Botón ubicación -->
-  <a href="https://maps.app.goo.gl/FT7mFgKbXzcSF8Wh7" target="_blank" class="btn-invisible btn-ubicacion"></a>
-
+  <!-- Botón invisible para música (sobre icono play), ahora reproduce y pausa -->
+<div class="btn-invisible"
+     onclick="toggleAudio()"
+     style="top:23%; left:50%; transform:translateX(-50%); width:7%; height:3%;">
 </div>
 
-<!-- Audio -->
-<audio id="audio">
-  <source src="cancion.mp3" type="audio/mpeg">
-</audio>
-
-<!-- Script audio -->
 <script>
 function toggleAudio() {
     var audio = document.getElementById('audio');
-
     if (audio.paused) {
-        audio.play().catch(function(e){
-            console.log("Error al reproducir:", e);
-        });
+        audio.play();
     } else {
         audio.pause();
     }
 }
 </script>
+
+  <!-- Botón invisible para ubicación (sobre icono ubicación) -->
+  <a href="https://maps.app.goo.gl/FT7mFgKbXzcSF8Wh7" target="_blank"
+     class="btn-invisible"
+     style="top:80%; left:58%; transform:translateX(-50%); width:12%; height:2.5%; display:block;">
+  </a>
+
+</div>
+
+<!-- Reproductor de audio -->
+<audio id="audio">
+  <source src="cancion.mp3" type="audio/mpeg">
+  Tu navegador no soporta audio.
+</audio>
 
 <!-- Script contador -->
 <script>
