@@ -8,13 +8,20 @@
   body {
     margin: 0;
     font-family: 'Georgia', serif;
-    height: 100vh;
+  }
 
-    /* Imagen de fondo */
+  /* Fondo fijo */
+  .fondo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
     background-image: url("invitacion.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    z-index: -1;
   }
 
   /* Contenedor */
@@ -83,6 +90,9 @@
 </head>
 <body>
 
+<!-- Fondo -->
+<div class="fondo"></div>
+
 <div class="container">
 
   <!-- Contador -->
@@ -101,17 +111,22 @@
   <source src="cancion.mp3" type="audio/mpeg">
 </audio>
 
+<!-- Script audio -->
 <script>
 function toggleAudio() {
     var audio = document.getElementById('audio');
+
     if (audio.paused) {
-        audio.play();
+        audio.play().catch(function(e){
+            console.log("Error al reproducir:", e);
+        });
     } else {
         audio.pause();
     }
 }
 </script>
 
+<!-- Script contador -->
 <script>
 var countDownDate = new Date("Jul 25, 2026 18:30:00").getTime();
 
