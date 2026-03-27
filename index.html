@@ -12,18 +12,17 @@
 }
 
   /* Contenedor principal */
-  .container {
+.container {
   position: relative;
   width: 100vw;
-  height: 100vh;
-  overflow: hidden;
+  max-width: 1080px; /* opcional si quieres limitar en PC */
+  margin: 0 auto; /* centra en pantallas grandes */
 }
 
   /* Imagen de invitación */
 .container img {
-  width: 100vw;
-  height: 100vh;
-  object-fit: contain; /* o cover si quieres que llene todo */
+  width: 100%;
+  height: auto;
   display: block;
 }
 
